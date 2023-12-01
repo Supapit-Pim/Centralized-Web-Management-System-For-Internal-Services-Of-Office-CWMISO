@@ -1,0 +1,3455 @@
+openapi: 3.0.0
+info:
+  title: SAO2023
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+  # - url: https://api-sao.onrender.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    ApiKeyAuth:   
+      type: apiKey
+      in: header    
+      name: token
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Login
+  - name: Superadmin
+  - name: Superadmin > superadmin
+  - name: Superadmin > admin
+  - name: Superadmin > user
+  - name: Superadmin > type_all
+  - name: Superadmin > type_company
+  - name: Superadmin > type_form
+  - name: Superadmin > type_social
+  - name: Superadmin > company
+  - name: Superadmin > list_company
+  - name: Superadmin > list_personnel
+  - name: Superadmin > list_service
+  - name: Superadmin > list_upload
+  - name: Superadmin > status_company
+  - name: Superadmin > status_social
+  - name: Superadmin > status_upload
+  - name: Superadmin > create_form
+  - name: Superadmin > data_form
+  - name: Superadmin > data_personnel
+  - name: Admin
+  - name: Admin > admin
+  - name: Admin > user
+  - name: Admin > company
+  - name: Admin > list_company
+  - name: Admin > list_personnel
+  - name: Admin > list_service
+  - name: Admin > list_upload
+  - name: Admin > status_company
+  - name: Admin > status_social
+  - name: Admin > status_upload
+  - name: Admin > create_form
+  - name: Admin > data_form
+  - name: Admin > data_personnel
+  - name: User
+  - name: User > user
+  - name: User > list_upload
+  - name: User > status_upload
+  - name: User > data_personnel
+paths:
+  /login:
+    post:
+      tags:
+        - Login
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: superadmin2
+                password: '123'
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin:
+    get:
+      tags:
+        - Superadmin > superadmin
+      summary: Read Superadmin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/getid/{id}:
+    get:
+      tags:
+        - Superadmin > superadmin
+      summary: GetID  Superadmin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/add:
+    post:
+      tags:
+        - Superadmin > superadmin
+      summary: Create  Superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: superadmin
+                username: superadmin100
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/update/{id}:
+    put:
+      tags:
+        - Superadmin > superadmin
+      summary: Update  Superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: superadmin
+                username: superadmin95
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > superadmin
+      summary: Delete  Superadmin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > superadmin
+      summary: UnDelete  Superadmin
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin:
+    get:
+      tags:
+        - Superadmin > admin
+      summary: Read Admin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/getid/{id}:
+    get:
+      tags:
+        - Superadmin > admin
+      summary: GetID  Admin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/add:
+    post:
+      tags:
+        - Superadmin > admin
+      summary: Create  Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin98
+                password: '123'
+                photo: admin.jpg
+                company_id: '22'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/update/{id}:
+    put:
+      tags:
+        - Superadmin > admin
+      summary: Update  Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin98
+                password: '123'
+                photo: admin.jpg
+                company_id: '22'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > admin
+      summary: Delete  Admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > admin
+      summary: UnDelete  Admin
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user:
+    get:
+      tags:
+        - Superadmin > user
+      summary: Read User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/getid/{id}:
+    get:
+      tags:
+        - Superadmin > user
+      summary: GetID  User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/add:
+    post:
+      tags:
+        - Superadmin > user
+      summary: Create  User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user327
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/update/{id}:
+    put:
+      tags:
+        - Superadmin > user
+      summary: Update  User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: superadmin
+                username: superadmin95
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > user
+      summary: Delete  User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > user
+      summary: UnDelete  User
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall:
+    get:
+      tags:
+        - Superadmin > type_all
+      summary: Read  Type_all
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/getid/{id}:
+    get:
+      tags:
+        - Superadmin > type_all
+      summary: GetID  Type_all
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/add:
+    post:
+      tags:
+        - Superadmin > type_all
+      summary: Create  Type_all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: file PDF
+                type: text
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/update/{id}:
+    put:
+      tags:
+        - Superadmin > type_all
+      summary: Update  Type_all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: file 34
+                type: text
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > type_all
+      summary: Delete  Type_all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > type_all
+      summary: UnDelete  Type_all
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany:
+    get:
+      tags:
+        - Superadmin > type_company
+      summary: Read   Type_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/getid/{id}:
+    get:
+      tags:
+        - Superadmin > type_company
+      summary: GetID  Type_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/add:
+    post:
+      tags:
+        - Superadmin > type_company
+      summary: Create  Type_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                initials: t
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/update/{id}:
+    put:
+      tags:
+        - Superadmin > type_company
+      summary: Update Type_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                initials: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > type_company
+      summary: Delete   Type_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > type_company
+      summary: UnDelete   Type_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform:
+    get:
+      tags:
+        - Superadmin > type_form
+      summary: Read   Type_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/getid/{id}:
+    get:
+      tags:
+        - Superadmin > type_form
+      summary: GetID  Type_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/add:
+    post:
+      tags:
+        - Superadmin > type_form
+      summary: Create  Type_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test13
+                type: test5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/update/{id}:
+    put:
+      tags:
+        - Superadmin > type_form
+      summary: Update Type_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                type: test12
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > type_form
+      summary: Delete  Type_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > type_form
+      summary: UnDelete  Type_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial:
+    get:
+      tags:
+        - Superadmin > type_social
+      summary: Read  Type_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/getid/{id}:
+    get:
+      tags:
+        - Superadmin > type_social
+      summary: GetID Type_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/add:
+    post:
+      tags:
+        - Superadmin > type_social
+      summary: Create  Type_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test18
+                icon: file.png
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/update/{id}:
+    put:
+      tags:
+        - Superadmin > type_social
+      summary: Update Type_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test15
+                icon: file.png
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > type_social
+      summary: Delete Type_social
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > type_social
+      summary: UnDelete  Type_social
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company:
+    get:
+      tags:
+        - Superadmin > company
+      summary: Read  Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/getid/{id}:
+    get:
+      tags:
+        - Superadmin > company
+      summary: GetID Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/add:
+    post:
+      tags:
+        - Superadmin > company
+      summary: Create  Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                name_eng: test
+                logo: test
+                number: '23'
+                address: test
+                location: test
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/update/{id}:
+    put:
+      tags:
+        - Superadmin > company
+      summary: Update Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                name_eng: test
+                logo: test
+                number: '22'
+                address: test
+                location: test
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > company
+      summary: Delete Company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > company
+      summary: UnDelete  Company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany:
+    get:
+      tags:
+        - Superadmin > list_company
+      summary: Read  List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/getid/{id}:
+    get:
+      tags:
+        - Superadmin > list_company
+      summary: GetID List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/add:
+    post:
+      tags:
+        - Superadmin > list_company
+      summary: Create  List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ26
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/update/{id}:
+    put:
+      tags:
+        - Superadmin > list_company
+      summary: Update List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ27
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > list_company
+      summary: Delete List_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > list_company
+      summary: UnDelete  List_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel:
+    get:
+      tags:
+        - Superadmin > list_personnel
+      summary: Read  List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/getid/{id}:
+    get:
+      tags:
+        - Superadmin > list_personnel
+      summary: GetID List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/add:
+    post:
+      tags:
+        - Superadmin > list_personnel
+      summary: Create  List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร12
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/update/{id}:
+    put:
+      tags:
+        - Superadmin > list_personnel
+      summary: Update List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร11
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > list_personnel
+      summary: Delete List_personnel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > list_personnel
+      summary: UnDelete List_personnel
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice:
+    get:
+      tags:
+        - Superadmin > list_service
+      summary: Read  List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/getid/{id}:
+    get:
+      tags:
+        - Superadmin > list_service
+      summary: GetID List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/add:
+    post:
+      tags:
+        - Superadmin > list_service
+      summary: Create  List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-19
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/update/{id}:
+    put:
+      tags:
+        - Superadmin > list_service
+      summary: Update List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-18
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > list_service
+      summary: Delete List_service
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > list_service
+      summary: UnDelete List_service
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload:
+    get:
+      tags:
+        - Superadmin > list_upload
+      summary: Read  List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/getid/{id}:
+    get:
+      tags:
+        - Superadmin > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/add:
+    post:
+      tags:
+        - Superadmin > list_upload
+      summary: Create  List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/update/{id}:
+    put:
+      tags:
+        - Superadmin > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-15
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > list_upload
+      summary: Delete List_upload
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany:
+    get:
+      tags:
+        - Superadmin > status_company
+      summary: Read  Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/getid/{id}:
+    get:
+      tags:
+        - Superadmin > status_company
+      summary: GetID Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/add:
+    post:
+      tags:
+        - Superadmin > status_company
+      summary: Create Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/update/{id}:
+    put:
+      tags:
+        - Superadmin > status_company
+      summary: Update Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 8
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > status_company
+      summary: Delete Status_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > status_company
+      summary: UnDelete Status_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial:
+    get:
+      tags:
+        - Superadmin > status_social
+      summary: Read  Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/getid/{id}:
+    get:
+      tags:
+        - Superadmin > status_social
+      summary: GetID Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/add:
+    post:
+      tags:
+        - Superadmin > status_social
+      summary: Create Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/update/{id}:
+    put:
+      tags:
+        - Superadmin > status_social
+      summary: Update Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook12
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > status_social
+      summary: Delete Status_social
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > status_social
+      summary: UnDelete Status_social
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload:
+    get:
+      tags:
+        - Superadmin > status_upload
+      summary: Read  Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/getid/{id}:
+    get:
+      tags:
+        - Superadmin > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/add:
+    post:
+      tags:
+        - Superadmin > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/update/{id}:
+    put:
+      tags:
+        - Superadmin > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 12
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > status_upload
+      summary: Delete Status_upload
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform:
+    get:
+      tags:
+        - Superadmin > create_form
+      summary: Read Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/getid/{id}:
+    get:
+      tags:
+        - Superadmin > create_form
+      summary: GetID Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/add:
+    post:
+      tags:
+        - Superadmin > create_form
+      summary: Create Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-4
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/update/{id}:
+    put:
+      tags:
+        - Superadmin > create_form
+      summary: Update Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-3
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > create_form
+      summary: Delete Create_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > create_form
+      summary: UnDelete Create_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform:
+    get:
+      tags:
+        - Superadmin > data_form
+      summary: Read Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/getid/{id}:
+    get:
+      tags:
+        - Superadmin > data_form
+      summary: GetID Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/add:
+    post:
+      tags:
+        - Superadmin > data_form
+      summary: Create Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"A","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/update/{id}:
+    put:
+      tags:
+        - Superadmin > data_form
+      summary: Update Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"4","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > data_form
+      summary: Delete Data_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > data_form
+      summary: UnDelete Data_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel:
+    get:
+      tags:
+        - Superadmin > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/getid/{id}:
+    get:
+      tags:
+        - Superadmin > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/add:
+    post:
+      tags:
+        - Superadmin > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-6
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/update/{id}:
+    put:
+      tags:
+        - Superadmin > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-5
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/delete/{id}:
+    delete:
+      tags:
+        - Superadmin > data_personnel
+      summary: Delete Data_personnel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/undelete/{id}:
+    put:
+      tags:
+        - Superadmin > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/admin/getid/{id}:
+    get:
+      tags:
+        - Admin > admin
+      summary: GetID Admin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/admin/update/{id}:
+    put:
+      tags:
+        - Admin > admin
+      summary: Update Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin1
+                password: '123'
+                photo: admin1.jpg
+                company_id: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user:
+    get:
+      tags:
+        - Admin > user
+      summary: Read User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/getid/{id}:
+    get:
+      tags:
+        - Admin > user
+      summary: GetID User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/add:
+    post:
+      tags:
+        - Admin > user
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user83
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/update/{id}:
+    put:
+      tags:
+        - Admin > user
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user83
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/delete/{id}:
+    delete:
+      tags:
+        - Admin > user
+      summary: Delete User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/undelete/{id}:
+    put:
+      tags:
+        - Admin > user
+      summary: UnDelete User
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/getid/{id}:
+    get:
+      tags:
+        - Admin > company
+      summary: GetID Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/update/{id}:
+    put:
+      tags:
+        - Admin > company
+      summary: Update Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: company
+                name_eng: company
+                logo: company
+                number: '4'
+                address: company
+                location: company
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany:
+    get:
+      tags:
+        - Admin > list_company
+      summary: Read List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/getid/{id}:
+    get:
+      tags:
+        - Admin > list_company
+      summary: GetID List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/add:
+    post:
+      tags:
+        - Admin > list_company
+      summary: Create List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ-26
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/update/{id}:
+    put:
+      tags:
+        - Admin > list_company
+      summary: Update List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ-28
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/delete/{id}:
+    delete:
+      tags:
+        - Admin > list_company
+      summary: Delete List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/undelete/{id}:
+    put:
+      tags:
+        - Admin > list_company
+      summary: UnDelete List_company
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel:
+    get:
+      tags:
+        - Admin > list_personnel
+      summary: Read List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/getid/{id}:
+    get:
+      tags:
+        - Admin > list_personnel
+      summary: GetID List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/add:
+    post:
+      tags:
+        - Admin > list_personnel
+      summary: Create List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร-13
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/update/{id}:
+    put:
+      tags:
+        - Admin > list_personnel
+      summary: Update List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร-12
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/delete/{id}:
+    delete:
+      tags:
+        - Admin > list_personnel
+      summary: Delete List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/undelete/{id}:
+    put:
+      tags:
+        - Admin > list_personnel
+      summary: UnDelete List_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice:
+    get:
+      tags:
+        - Admin > list_service
+      summary: Read List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/getid/{id}:
+    get:
+      tags:
+        - Admin > list_service
+      summary: GetID List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/add:
+    post:
+      tags:
+        - Admin > list_service
+      summary: Create List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-20
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/update/{id}:
+    put:
+      tags:
+        - Admin > list_service
+      summary: Update List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-17
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/delete/{id}:
+    delete:
+      tags:
+        - Admin > list_service
+      summary: Delete List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/undelete/{id}:
+    put:
+      tags:
+        - Admin > list_service
+      summary: UnDelete List_service
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload:
+    get:
+      tags:
+        - Admin > list_upload
+      summary: Read List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/getid/{id}:
+    get:
+      tags:
+        - Admin > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/add:
+    post:
+      tags:
+        - Admin > list_upload
+      summary: Create List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-17
+                level: null
+                root: null
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/update/{id}:
+    put:
+      tags:
+        - Admin > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/delete/{id}:
+    delete:
+      tags:
+        - Admin > list_upload
+      summary: Delete List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/undelete/{id}:
+    put:
+      tags:
+        - Admin > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany:
+    get:
+      tags:
+        - Admin > status_company
+      summary: Read Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/getid/{id}:
+    get:
+      tags:
+        - Admin > status_company
+      summary: GetID Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/add:
+    post:
+      tags:
+        - Admin > status_company
+      summary: Create Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/update/{id}:
+    put:
+      tags:
+        - Admin > status_company
+      summary: Update Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/delete/{id}:
+    delete:
+      tags:
+        - Admin > status_company
+      summary: Delete Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/undelete/{id}:
+    put:
+      tags:
+        - Admin > status_company
+      summary: UnDelete Status_company
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial:
+    get:
+      tags:
+        - Admin > status_social
+      summary: Read Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/getid/{id}:
+    get:
+      tags:
+        - Admin > status_social
+      summary: GetID Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/add:
+    post:
+      tags:
+        - Admin > status_social
+      summary: Create Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/update/{id}:
+    put:
+      tags:
+        - Admin > status_social
+      summary: Update Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook13
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/delete/{id}:
+    delete:
+      tags:
+        - Admin > status_social
+      summary: Delete Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/undelete/{id}:
+    put:
+      tags:
+        - Admin > status_social
+      summary: UnDelete Status_social
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload:
+    get:
+      tags:
+        - Admin > status_upload
+      summary: Read Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/getid/{id}:
+    get:
+      tags:
+        - Admin > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/add:
+    post:
+      tags:
+        - Admin > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/update/{id}:
+    put:
+      tags:
+        - Admin > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/delete/{id}:
+    delete:
+      tags:
+        - Admin > status_upload
+      summary: Delete Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/undelete/{id}:
+    put:
+      tags:
+        - Admin > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform:
+    get:
+      tags:
+        - Admin > create_form
+      summary: Read Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/getid/{id}:
+    get:
+      tags:
+        - Admin > create_form
+      summary: GetID Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/add:
+    post:
+      tags:
+        - Admin > create_form
+      summary: Create Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-5
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/update/{id}:
+    put:
+      tags:
+        - Admin > create_form
+      summary: Update Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-5
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/delete/{id}:
+    delete:
+      tags:
+        - Admin > create_form
+      summary: Delete Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/undelete/{id}:
+    put:
+      tags:
+        - Admin > create_form
+      summary: UnDelete Create_form
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform:
+    get:
+      tags:
+        - Admin > data_form
+      summary: Read Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/getid/{id}:
+    get:
+      tags:
+        - Admin > data_form
+      summary: GetID Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/add:
+    post:
+      tags:
+        - Admin > data_form
+      summary: Create Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"A","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/update/{id}:
+    put:
+      tags:
+        - Admin > data_form
+      summary: Update Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"5","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/delete/{id}:
+    delete:
+      tags:
+        - Admin > data_form
+      summary: Delete Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/undelete/{id}:
+    put:
+      tags:
+        - Admin > data_form
+      summary: UnDelete Data_form
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel:
+    get:
+      tags:
+        - Admin > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/getid/{id}:
+    get:
+      tags:
+        - Admin > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/add:
+    post:
+      tags:
+        - Admin > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-7
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/update/{id}:
+    put:
+      tags:
+        - Admin > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-7
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/delete/{id}:
+    delete:
+      tags:
+        - Admin > data_personnel
+      summary: Delete Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/undelete/{id}:
+    put:
+      tags:
+        - Admin > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/user/getid/{id}:
+    get:
+      tags:
+        - User > user
+      summary: GetID User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/user/update/{id}:
+    put:
+      tags:
+        - User > user
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user1
+                password: '123'
+                photo: user1.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload:
+    get:
+      tags:
+        - User > list_upload
+      summary: Read List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/getid/{id}:
+    get:
+      tags:
+        - User > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/add:
+    post:
+      tags:
+        - User > list_upload
+      summary: Create List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-18
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/update/{id}:
+    put:
+      tags:
+        - User > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/delete/{id}:
+    delete:
+      tags:
+        - User > list_upload
+      summary: Delete List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/undelete/{id}:
+    put:
+      tags:
+        - User > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload:
+    get:
+      tags:
+        - User > status_upload
+      summary: Read Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/getid/{id}:
+    get:
+      tags:
+        - User > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/add:
+    post:
+      tags:
+        - User > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/update/{id}:
+    put:
+      tags:
+        - User > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 2
+                list_upload_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/delete/{id}:
+    delete:
+      tags:
+        - User > status_upload
+      summary: Delete Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/undelete/{id}:
+    put:
+      tags:
+        - User > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel:
+    get:
+      tags:
+        - User > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/getid/{id}:
+    get:
+      tags:
+        - User > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/add:
+    post:
+      tags:
+        - User > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-8
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/update/{id}:
+    put:
+      tags:
+        - User > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-8
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/delete/{id}:
+    delete:
+      tags:
+        - User > data_personnel
+      summary: Delete Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/undelete/{id}:
+    put:
+      tags:
+        - User > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            authorize
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

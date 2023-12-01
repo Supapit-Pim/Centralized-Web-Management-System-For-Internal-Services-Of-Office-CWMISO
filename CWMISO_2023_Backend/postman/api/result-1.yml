@@ -1,0 +1,3456 @@
+openapi: 3.0.0
+info:
+  title: SAO2023
+  version: 1.0.0
+
+servers:
+  # - url: http://localhost:5000
+  - url: https://api-sao.onrender.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    ApiKeyAuth:   
+      type: apiKey
+      in: header    
+      name: token
+  schemas:
+    ID:
+      properties:
+        id:
+            type: integer
+            format: int64
+            minimum: 1
+
+    Superadmin:
+      type: object
+      properties:
+        name:
+          type: string
+          example: superadmin
+        username:
+          type: string
+          example: superadmin1
+        password:
+          type: string
+          example: password123
+        photo:
+          type: string
+          example: photo.jpg
+      required:
+      - name
+      - username
+      - password
+      - photo
+
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Login
+  - name: Superadmin
+  - name: Superadmin > superadmin
+  - name: Superadmin > admin
+  - name: Superadmin > user
+  - name: Superadmin > type_all
+  - name: Superadmin > type_company
+  - name: Superadmin > type_form
+  - name: Superadmin > type_social
+  - name: Superadmin > company
+  - name: Superadmin > list_company
+  - name: Superadmin > list_personnel
+  - name: Superadmin > list_service
+  - name: Superadmin > list_upload
+  - name: Superadmin > status_company
+  - name: Superadmin > status_social
+  - name: Superadmin > status_upload
+  - name: Superadmin > create_form
+  - name: Superadmin > data_form
+  - name: Superadmin > data_personnel
+  - name: Admin
+  - name: Admin > admin
+  - name: Admin > user
+  - name: Admin > company
+  - name: Admin > list_company
+  - name: Admin > list_personnel
+  - name: Admin > list_service
+  - name: Admin > list_upload
+  - name: Admin > status_company
+  - name: Admin > status_social
+  - name: Admin > status_upload
+  - name: Admin > create_form
+  - name: Admin > data_form
+  - name: Admin > data_personnel
+  - name: User
+  - name: User > user
+  - name: User > list_upload
+  - name: User > status_upload
+  - name: User > data_personnel
+paths:
+  /login:
+    post:
+      tags:
+        - Login
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: superadmin2
+                password: '123'
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin:
+    get:
+      tags:
+        - Superadmin > superadmin
+      summary: Read Superadmin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/getid/{id}:
+    get:
+      tags:
+        - Superadmin > superadmin
+      summary: GetID Superadmin
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schema/ID'
+            # type: integer
+            # format: int64
+            # minimum: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Superadmin'
+  /superadmin/superadmin/add:
+    post:
+      tags:
+        - Superadmin > superadmin
+      summary: Create Superadmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              # $ref: '#/components/schema/Superadmin'
+              type: object
+              example:
+                name: superadmin
+                username: superadmin100
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/update/95:
+    put:
+      tags:
+        - Superadmin > superadmin
+      summary: Update  Superadmin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: superadmin
+                username: superadmin95
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/delete/1:
+    delete:
+      tags:
+        - Superadmin > superadmin
+      summary: Delete  Superadmin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/superadmin/undelete/1:
+    put:
+      tags:
+        - Superadmin > superadmin
+      summary: UnDelete  Superadmin
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin:
+    get:
+      tags:
+        - Superadmin > admin
+      summary: Read Admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/getid/36:
+    get:
+      tags:
+        - Superadmin > admin
+      summary: GetID  Admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/add:
+    post:
+      tags:
+        - Superadmin > admin
+      summary: Create  Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin98
+                password: '123'
+                photo: admin.jpg
+                company_id: '22'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/update/1:
+    put:
+      tags:
+        - Superadmin > admin
+      summary: Update  Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin98
+                password: '123'
+                photo: admin.jpg
+                company_id: '22'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/delete/1:
+    delete:
+      tags:
+        - Superadmin > admin
+      summary: Delete  Admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/admin/undelete/1:
+    put:
+      tags:
+        - Superadmin > admin
+      summary: UnDelete  Admin
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user:
+    get:
+      tags:
+        - Superadmin > user
+      summary: Read User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/getid/36:
+    get:
+      tags:
+        - Superadmin > user
+      summary: GetID  User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/add:
+    post:
+      tags:
+        - Superadmin > user
+      summary: Create  User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user327
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/update/95:
+    put:
+      tags:
+        - Superadmin > user
+      summary: Update  User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: superadmin
+                username: superadmin95
+                password: '123'
+                photo: superadmin.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/delete/1:
+    delete:
+      tags:
+        - Superadmin > user
+      summary: Delete  User
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/user/undelete/1:
+    put:
+      tags:
+        - Superadmin > user
+      summary: UnDelete  User
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall:
+    get:
+      tags:
+        - Superadmin > type_all
+      summary: Read  Type_all
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/getid/1:
+    get:
+      tags:
+        - Superadmin > type_all
+      summary: GetID  Type_all
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/add:
+    post:
+      tags:
+        - Superadmin > type_all
+      summary: Create  Type_all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: file PDF
+                type: text
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/update/34:
+    put:
+      tags:
+        - Superadmin > type_all
+      summary: Update  Type_all
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: file 34
+                type: text
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/delete/1:
+    delete:
+      tags:
+        - Superadmin > type_all
+      summary: Delete  Type_all
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeall/undelete/1:
+    put:
+      tags:
+        - Superadmin > type_all
+      summary: UnDelete  Type_all
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany:
+    get:
+      tags:
+        - Superadmin > type_company
+      summary: Read   Type_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/getid/1:
+    get:
+      tags:
+        - Superadmin > type_company
+      summary: GetID  Type_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/add:
+    post:
+      tags:
+        - Superadmin > type_company
+      summary: Create  Type_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                initials: t
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/update/10:
+    put:
+      tags:
+        - Superadmin > type_company
+      summary: Update Type_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                initials: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/delete/1:
+    delete:
+      tags:
+        - Superadmin > type_company
+      summary: Delete   Type_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typecompany/undelete/1:
+    put:
+      tags:
+        - Superadmin > type_company
+      summary: UnDelete   Type_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform:
+    get:
+      tags:
+        - Superadmin > type_form
+      summary: Read   Type_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/getid/1:
+    get:
+      tags:
+        - Superadmin > type_form
+      summary: GetID  Type_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/add:
+    post:
+      tags:
+        - Superadmin > type_form
+      summary: Create  Type_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test13
+                type: test5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/update/12:
+    put:
+      tags:
+        - Superadmin > type_form
+      summary: Update Type_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                type: test12
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/delete/1:
+    delete:
+      tags:
+        - Superadmin > type_form
+      summary: Delete  Type_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typeform/undelete/1:
+    put:
+      tags:
+        - Superadmin > type_form
+      summary: UnDelete  Type_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial:
+    get:
+      tags:
+        - Superadmin > type_social
+      summary: Read  Type_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/getid/1:
+    get:
+      tags:
+        - Superadmin > type_social
+      summary: GetID Type_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/add:
+    post:
+      tags:
+        - Superadmin > type_social
+      summary: Create  Type_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test18
+                icon: file.png
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/update/15:
+    put:
+      tags:
+        - Superadmin > type_social
+      summary: Update Type_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test15
+                icon: file.png
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/delete/1:
+    delete:
+      tags:
+        - Superadmin > type_social
+      summary: Delete Type_social
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/typesocial/undelete/1:
+    put:
+      tags:
+        - Superadmin > type_social
+      summary: UnDelete  Type_social
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company:
+    get:
+      tags:
+        - Superadmin > company
+      summary: Read  Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/getid/4:
+    get:
+      tags:
+        - Superadmin > company
+      summary: GetID Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/add:
+    post:
+      tags:
+        - Superadmin > company
+      summary: Create  Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                name_eng: test
+                logo: test
+                number: '23'
+                address: test
+                location: test
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/update/22:
+    put:
+      tags:
+        - Superadmin > company
+      summary: Update Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+                name_eng: test
+                logo: test
+                number: '22'
+                address: test
+                location: test
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/delete/4:
+    delete:
+      tags:
+        - Superadmin > company
+      summary: Delete Company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/company/undelete/4:
+    put:
+      tags:
+        - Superadmin > company
+      summary: UnDelete  Company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany:
+    get:
+      tags:
+        - Superadmin > list_company
+      summary: Read  List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/getid/1:
+    get:
+      tags:
+        - Superadmin > list_company
+      summary: GetID List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/add:
+    post:
+      tags:
+        - Superadmin > list_company
+      summary: Create  List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ26
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/update/27:
+    put:
+      tags:
+        - Superadmin > list_company
+      summary: Update List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ27
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/delete/1:
+    delete:
+      tags:
+        - Superadmin > list_company
+      summary: Delete List_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listcompany/undelete/1:
+    put:
+      tags:
+        - Superadmin > list_company
+      summary: UnDelete  List_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel:
+    get:
+      tags:
+        - Superadmin > list_personnel
+      summary: Read  List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/getid/1:
+    get:
+      tags:
+        - Superadmin > list_personnel
+      summary: GetID List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/add:
+    post:
+      tags:
+        - Superadmin > list_personnel
+      summary: Create  List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร12
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/update/11:
+    put:
+      tags:
+        - Superadmin > list_personnel
+      summary: Update List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร11
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/delete/1:
+    delete:
+      tags:
+        - Superadmin > list_personnel
+      summary: Delete List_personnel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listpersonnel/undelete/1:
+    put:
+      tags:
+        - Superadmin > list_personnel
+      summary: UnDelete List_personnel
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice:
+    get:
+      tags:
+        - Superadmin > list_service
+      summary: Read  List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/getid/5:
+    get:
+      tags:
+        - Superadmin > list_service
+      summary: GetID List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/add:
+    post:
+      tags:
+        - Superadmin > list_service
+      summary: Create  List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-19
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/update/18:
+    put:
+      tags:
+        - Superadmin > list_service
+      summary: Update List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-18
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/delete/5:
+    delete:
+      tags:
+        - Superadmin > list_service
+      summary: Delete List_service
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listservice/undelete/5:
+    put:
+      tags:
+        - Superadmin > list_service
+      summary: UnDelete List_service
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload:
+    get:
+      tags:
+        - Superadmin > list_upload
+      summary: Read  List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/getid/1:
+    get:
+      tags:
+        - Superadmin > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/add:
+    post:
+      tags:
+        - Superadmin > list_upload
+      summary: Create  List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/update/15:
+    put:
+      tags:
+        - Superadmin > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-15
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/delete/1:
+    delete:
+      tags:
+        - Superadmin > list_upload
+      summary: Delete List_upload
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/listupload/undelete/1:
+    put:
+      tags:
+        - Superadmin > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany:
+    get:
+      tags:
+        - Superadmin > status_company
+      summary: Read  Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/getid/1:
+    get:
+      tags:
+        - Superadmin > status_company
+      summary: GetID Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/add:
+    post:
+      tags:
+        - Superadmin > status_company
+      summary: Create Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/update/8:
+    put:
+      tags:
+        - Superadmin > status_company
+      summary: Update Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 8
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/delete/1:
+    delete:
+      tags:
+        - Superadmin > status_company
+      summary: Delete Status_company
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statuscompany/undelete/1:
+    put:
+      tags:
+        - Superadmin > status_company
+      summary: UnDelete Status_company
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial:
+    get:
+      tags:
+        - Superadmin > status_social
+      summary: Read  Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/getid/1:
+    get:
+      tags:
+        - Superadmin > status_social
+      summary: GetID Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/add:
+    post:
+      tags:
+        - Superadmin > status_social
+      summary: Create Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/update/12:
+    put:
+      tags:
+        - Superadmin > status_social
+      summary: Update Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook12
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/delete/1:
+    delete:
+      tags:
+        - Superadmin > status_social
+      summary: Delete Status_social
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statussocial/undelete/1:
+    put:
+      tags:
+        - Superadmin > status_social
+      summary: UnDelete Status_social
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload:
+    get:
+      tags:
+        - Superadmin > status_upload
+      summary: Read  Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/getid/1:
+    get:
+      tags:
+        - Superadmin > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/add:
+    post:
+      tags:
+        - Superadmin > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/update/6:
+    put:
+      tags:
+        - Superadmin > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 12
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/delete/1:
+    delete:
+      tags:
+        - Superadmin > status_upload
+      summary: Delete Status_upload
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/statusupload/undelete/1:
+    put:
+      tags:
+        - Superadmin > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform:
+    get:
+      tags:
+        - Superadmin > create_form
+      summary: Read Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/getid/1:
+    get:
+      tags:
+        - Superadmin > create_form
+      summary: GetID Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/add:
+    post:
+      tags:
+        - Superadmin > create_form
+      summary: Create Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-4
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/update/3:
+    put:
+      tags:
+        - Superadmin > create_form
+      summary: Update Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-3
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/delete/1:
+    delete:
+      tags:
+        - Superadmin > create_form
+      summary: Delete Create_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/createform/undelete/1:
+    put:
+      tags:
+        - Superadmin > create_form
+      summary: UnDelete Create_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform:
+    get:
+      tags:
+        - Superadmin > data_form
+      summary: Read Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/getid/1:
+    get:
+      tags:
+        - Superadmin > data_form
+      summary: GetID Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/add:
+    post:
+      tags:
+        - Superadmin > data_form
+      summary: Create Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"A","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/update/4:
+    put:
+      tags:
+        - Superadmin > data_form
+      summary: Update Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"4","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/delete/1:
+    delete:
+      tags:
+        - Superadmin > data_form
+      summary: Delete Data_form
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/dataform/undelete/1:
+    put:
+      tags:
+        - Superadmin > data_form
+      summary: UnDelete Data_form
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel:
+    get:
+      tags:
+        - Superadmin > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/getid/1:
+    get:
+      tags:
+        - Superadmin > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/add:
+    post:
+      tags:
+        - Superadmin > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-6
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/update/5:
+    put:
+      tags:
+        - Superadmin > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-5
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/delete/1:
+    delete:
+      tags:
+        - Superadmin > data_personnel
+      summary: Delete Data_personnel
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /superadmin/datapersonnel/undelete/1:
+    put:
+      tags:
+        - Superadmin > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/admin/getid/1:
+    get:
+      tags:
+        - Admin > admin
+      summary: GetID Admin
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/admin/update/1:
+    put:
+      tags:
+        - Admin > admin
+      summary: Update Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: admin
+                username: admin1
+                password: '123'
+                photo: admin1.jpg
+                company_id: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user:
+    get:
+      tags:
+        - Admin > user
+      summary: Read User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/getid/1:
+    get:
+      tags:
+        - Admin > user
+      summary: GetID User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/add:
+    post:
+      tags:
+        - Admin > user
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user83
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/update/83:
+    put:
+      tags:
+        - Admin > user
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user83
+                password: '123'
+                photo: user.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/delete/1:
+    delete:
+      tags:
+        - Admin > user
+      summary: Delete User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/user/undelete/1:
+    put:
+      tags:
+        - Admin > user
+      summary: UnDelete User
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/getid/4:
+    get:
+      tags:
+        - Admin > company
+      summary: GetID Company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/company/update/4:
+    put:
+      tags:
+        - Admin > company
+      summary: Update Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: company
+                name_eng: company
+                logo: company
+                number: '4'
+                address: company
+                location: company
+                tel: '0123456789'
+                flash: '0123456789'
+                type_company_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany:
+    get:
+      tags:
+        - Admin > list_company
+      summary: Read List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/getid/1:
+    get:
+      tags:
+        - Admin > list_company
+      summary: GetID List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/add:
+    post:
+      tags:
+        - Admin > list_company
+      summary: Create List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ-26
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/update/28:
+    put:
+      tags:
+        - Admin > list_company
+      summary: Update List_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: รายการชื่อ-28
+                level: null
+                root: null
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/delete/1:
+    delete:
+      tags:
+        - Admin > list_company
+      summary: Delete List_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listcompany/undelete/1:
+    put:
+      tags:
+        - Admin > list_company
+      summary: UnDelete List_company
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel:
+    get:
+      tags:
+        - Admin > list_personnel
+      summary: Read List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/getid/1:
+    get:
+      tags:
+        - Admin > list_personnel
+      summary: GetID List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/add:
+    post:
+      tags:
+        - Admin > list_personnel
+      summary: Create List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร-13
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/update/12:
+    put:
+      tags:
+        - Admin > list_personnel
+      summary: Update List_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ฝ่ายบริหาร-12
+                company_id: 4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/delete/1:
+    delete:
+      tags:
+        - Admin > list_personnel
+      summary: Delete List_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listpersonnel/undelete/1:
+    put:
+      tags:
+        - Admin > list_personnel
+      summary: UnDelete List_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice:
+    get:
+      tags:
+        - Admin > list_service
+      summary: Read List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/getid/5:
+    get:
+      tags:
+        - Admin > list_service
+      summary: GetID List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/add:
+    post:
+      tags:
+        - Admin > list_service
+      summary: Create List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-20
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/update/17:
+    put:
+      tags:
+        - Admin > list_service
+      summary: Update List_service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: ร้องเรียน-ร้องทุกข์-17
+                level: 1
+                root: null
+                company_id: 4
+                type_all_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/delete/5:
+    delete:
+      tags:
+        - Admin > list_service
+      summary: Delete List_service
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listservice/undelete/5:
+    put:
+      tags:
+        - Admin > list_service
+      summary: UnDelete List_service
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload:
+    get:
+      tags:
+        - Admin > list_upload
+      summary: Read List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/getid/1:
+    get:
+      tags:
+        - Admin > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/add:
+    post:
+      tags:
+        - Admin > list_upload
+      summary: Create List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-17
+                level: null
+                root: null
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/update/16:
+    put:
+      tags:
+        - Admin > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/delete/1:
+    delete:
+      tags:
+        - Admin > list_upload
+      summary: Delete List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/listupload/undelete/1:
+    put:
+      tags:
+        - Admin > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany:
+    get:
+      tags:
+        - Admin > status_company
+      summary: Read Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/getid/1:
+    get:
+      tags:
+        - Admin > status_company
+      summary: GetID Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/add:
+    post:
+      tags:
+        - Admin > status_company
+      summary: Create Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/update/9:
+    put:
+      tags:
+        - Admin > status_company
+      summary: Update Status_company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_company_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/delete/1:
+    delete:
+      tags:
+        - Admin > status_company
+      summary: Delete Status_company
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statuscompany/undelete/1:
+    put:
+      tags:
+        - Admin > status_company
+      summary: UnDelete Status_company
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial:
+    get:
+      tags:
+        - Admin > status_social
+      summary: Read Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/getid/1:
+    get:
+      tags:
+        - Admin > status_social
+      summary: GetID Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/add:
+    post:
+      tags:
+        - Admin > status_social
+      summary: Create Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/update/13:
+    put:
+      tags:
+        - Admin > status_social
+      summary: Update Status_social
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_social_id: 1
+                company_id: 4
+                name: Facebook13
+                url: www.facebook.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/delete/1:
+    delete:
+      tags:
+        - Admin > status_social
+      summary: Delete Status_social
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statussocial/undelete/1:
+    put:
+      tags:
+        - Admin > status_social
+      summary: UnDelete Status_social
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload:
+    get:
+      tags:
+        - Admin > status_upload
+      summary: Read Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/getid/1:
+    get:
+      tags:
+        - Admin > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/add:
+    post:
+      tags:
+        - Admin > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/update/7:
+    put:
+      tags:
+        - Admin > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/delete/1:
+    delete:
+      tags:
+        - Admin > status_upload
+      summary: Delete Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/statusupload/undelete/1:
+    put:
+      tags:
+        - Admin > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform:
+    get:
+      tags:
+        - Admin > create_form
+      summary: Read Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/getid/1:
+    get:
+      tags:
+        - Admin > create_form
+      summary: GetID Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/add:
+    post:
+      tags:
+        - Admin > create_form
+      summary: Create Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-5
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/update/5:
+    put:
+      tags:
+        - Admin > create_form
+      summary: Update Create_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ร้องเรียนทุจริต-5
+                data: "{\"ข้อความสั้น\":{\"title\":\"ชื่อ\",\"type\":\"string\",\"required\":\"true\"},\r\n\"ตัวเลือก\":{\"title\":\"เพศ\",\"type\":\"boolean\",\"choose\":[\"หญิง\",\"ชาย\"]}}\r\n"
+                list_service_id: 5
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/delete/1:
+    delete:
+      tags:
+        - Admin > create_form
+      summary: Delete Create_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/createform/undelete/1:
+    put:
+      tags:
+        - Admin > create_form
+      summary: UnDelete Create_form
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform:
+    get:
+      tags:
+        - Admin > data_form
+      summary: Read Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/getid/1:
+    get:
+      tags:
+        - Admin > data_form
+      summary: GetID Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/add:
+    post:
+      tags:
+        - Admin > data_form
+      summary: Create Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"A","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/update/5:
+    put:
+      tags:
+        - Admin > data_form
+      summary: Update Data_form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                data: '{"ชื่อ":"5","เพศ":"หญิง"}'
+                create_form_id: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/delete/1:
+    delete:
+      tags:
+        - Admin > data_form
+      summary: Delete Data_form
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/dataform/undelete/1:
+    put:
+      tags:
+        - Admin > data_form
+      summary: UnDelete Data_form
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel:
+    get:
+      tags:
+        - Admin > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/getid/1:
+    get:
+      tags:
+        - Admin > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/add:
+    post:
+      tags:
+        - Admin > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-7
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/update/7:
+    put:
+      tags:
+        - Admin > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-7
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/delete/1:
+    delete:
+      tags:
+        - Admin > data_personnel
+      summary: Delete Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/datapersonnel/undelete/1:
+    put:
+      tags:
+        - Admin > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/user/getid/1:
+    get:
+      tags:
+        - User > user
+      summary: GetID User
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/user/update/1:
+    put:
+      tags:
+        - User > user
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: user
+                username: user1
+                password: '123'
+                photo: user1.jpg
+                company_id: '4'
+                list_personnel_id: 2
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload:
+    get:
+      tags:
+        - User > list_upload
+      summary: Read List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/getid/16:
+    get:
+      tags:
+        - User > list_upload
+      summary: GetID List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/add:
+    post:
+      tags:
+        - User > list_upload
+      summary: Create List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-18
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/update/16:
+    put:
+      tags:
+        - User > list_upload
+      summary: Update List_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: document-16
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/delete/1:
+    delete:
+      tags:
+        - User > list_upload
+      summary: Delete List_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/listupload/undelete/1:
+    put:
+      tags:
+        - User > list_upload
+      summary: UnDelete List_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload:
+    get:
+      tags:
+        - User > status_upload
+      summary: Read Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/getid/2:
+    get:
+      tags:
+        - User > status_upload
+      summary: GetID Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/add:
+    post:
+      tags:
+        - User > status_upload
+      summary: Create Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 1
+                list_upload_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/update/8:
+    put:
+      tags:
+        - User > status_upload
+      summary: Update Status_upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                type_all_id: 2
+                list_upload_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/delete/2:
+    delete:
+      tags:
+        - User > status_upload
+      summary: Delete Status_upload
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/statusupload/undelete/2:
+    put:
+      tags:
+        - User > status_upload
+      summary: UnDelete Status_upload
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel:
+    get:
+      tags:
+        - User > data_personnel
+      summary: Read Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDErSHlUSGcwbVQ1UjljMCtuaHUxUTlMempoZkxDUFYvaDUraUpkU0tIYktMa29mL2ROdlR2WVE3bDlhamd1Z3RTaDd4LzluNitpMnd3PT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTQwNDY3LCJleHAiOjE2ODc5NjIwNjd9.A7AJECNc95KF97BEF4d5dQ6XKNC4gd8Rn4VP9zXB6mg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/getid/1:
+    get:
+      tags:
+        - User > data_personnel
+      summary: GetID Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDEvTG1ZY0JvL0llcmc4NlNZMDh2RllremhQazNoRnI5azQ1SnNmamZ4TDRRUzNhS3IvSFdPNVhhVkcxR3JKakFXS0Q5SnpDSlFKd05RPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI4ODQ1LCJleHAiOjE2ODc5NTA0NDV9.vCWLTWdHu6QeUGBIUFj-EE5l0m9QY3txz_TfHgmkb_8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/add:
+    post:
+      tags:
+        - User > data_personnel
+      summary: Create Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-8
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/update/7:
+    put:
+      tags:
+        - User > data_personnel
+      summary: Update Data_personnel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                position: ฝ่ายบริหาร-8
+                name: นายก
+                photo: test.jpg
+                tel: 123456789
+                file: test.pdf
+                level: null
+                root: null
+                list_personnel_id: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/delete/1:
+    delete:
+      tags:
+        - User > data_personnel
+      summary: Delete Data_personnel
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5TEtya2NLKy8zRmRiU1l0VVg0U1pvckF5aVJjU2dqcmMyeWJiZ3ZPMng2cEg3S1VNNEhxT3hxZ0hXYVZpaU40Z3NQdzN3aUwyS2pRPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI2NDkzLCJleHAiOjE2ODc5NDgwOTN9.o12TFNaW0F3S8Gblb3MlMjFGKltEkHKW7T9zpfck_-Q
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/datapersonnel/undelete/1:
+    put:
+      tags:
+        - User > data_personnel
+      summary: UnDelete Data_personnel
+      requestBody:
+        content: {}
+      parameters:
+        - name: token
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEYXRhVXNlciI6eyJpZCI6NzUsInVzZXJuYW1lIjoic3VwZXJhZG1pbjMiLCJwYXNzd29yZCI6IlUyRnNkR1ZrWDE5SWt6bTN2YVVuNjRxUzZrZlhabnhIZFVIVXl5bSs5TW9PVlBFdWVvNVFNTlMxak1oYjhmN2kzbDJjZ1hRaVZrdnJOK2tIWEtvc29nPT0iLCJyb2xlcyI6InN1cGVyYWRtaW4iLCJjb21wYW55X2lkIjowfSwiaWF0IjoxNjg3OTI5MzM5LCJleHAiOjE2ODc5NTA5Mzl9.xyy193y9O77YlLzbFN4aSTg41WBZ7kkQP0OTEx_q_ro
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

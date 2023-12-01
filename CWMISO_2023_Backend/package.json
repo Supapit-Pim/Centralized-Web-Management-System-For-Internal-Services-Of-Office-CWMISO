@@ -1,0 +1,25 @@
+{
+  "main": "connection.js",
+  "scripts": {
+    "devpm2": "pm2 start  connection.js",
+    "dev": "nodemon --legacy-watch connection.js",
+    "stopdevpm2": "pm2 stop connection.js",
+    "build": "pm2 start connection.js",
+    "start":"node connection.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.3.1",
+    "nodemon": "^2.0.22",
+    "pm2": "^5.3.0",
+    "postman-to-openapi": "^3.0.1",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14 <18.18"
+  }
+}
